@@ -9,12 +9,9 @@ weight: 10
 
 {{% capture overview %}}
 
-A node is a worker machine in Kubernetes, previously known as a `minion`. A node
-may be a VM or physical machine, depending on the cluster. Each node contains
-the services necessary to run [pods](/docs/concepts/workloads/pods/pod/) and is managed by the master
-components. The services on a node include the [container runtime](/docs/concepts/overview/components/#node-components), kubelet and kube-proxy. See
-[The Kubernetes Node](https://git.k8s.io/community/contributors/design-proposals/architecture/architecture.md#the-kubernetes-node) section in the
-architecture design doc for more details.
+`node` 其实就是一个独立的运行环境（*通常它是一个虚拟机，当然，也可以是一个物理机，只要它具有独立运行操作系统的能力*）, 在过去我们称它为 `minion`。 一个 `node` 可以是一台虚拟机，也可以是一台物理机，一个或一个以上的 `node` 可以构成一个 `cluster`（我们常常称它为集群）. 每个 `node` 应当具备运行 [pods](/docs/concepts/workloads/pods/pod/) 的基本能力并且它受控于 `master
+components`. 对于每一个合法的 `node` ，它们都具备使用 [container runtime](/docs/concepts/overview/components/#node-components), kubelet 和 kube-proxy 的能力. 详见
+[The Kubernetes Node](https://git.k8s.io/community/contributors/design-proposals/architecture/architecture.md#the-kubernetes-node) 一文。
 
 {{% /capture %}}
 
@@ -23,18 +20,18 @@ architecture design doc for more details.
 
 ## Node Status
 
-A node's status contains the following information:
+一个 `Node Status` 包含以下信息:
 
 * [Addresses](#addresses)
 * [Conditions](#condition)
 * [Capacity and Allocatable](#capacity)
 * [Info](#info)
 
-Node status and other details about a node can be displayed using below command:
+`Node Status` 以及其他关于某个 `node` 的详细信息，你可以通过执行以下命令查看:
 ```shell
 kubectl describe node <insert-node-name-here>
 ```
-Each section is described in detail below.
+每一个配置项都会在一个大的配置项下显示出来。
 
 ### Addresses
 
